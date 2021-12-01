@@ -39,6 +39,9 @@ class UserController extends Controller
     public function register(Request $request){
         return $this->model->register_user($request->all());
     }
+    public function loginu(Request $request){
+        return $this->model->login($request->all());
+    }
     public function show($id)
     {
         return $this->model->show($id);

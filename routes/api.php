@@ -26,4 +26,5 @@ Route::resource('categoires', CategoryController::class);
 Route::resource('trainers', TrainerController::class);
 Route::resource('users',UserController::class);
 Route::post('/register',[UserController::class,'register']);
+Route::post('/login',[UserController::class,'loginu']);
 

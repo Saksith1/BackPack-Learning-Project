@@ -137,4 +137,15 @@ class Repository implements RepositoryInterface
             return $record->update($data);
         }
     }
+    //login
+    public function login(array $data){
+        // $login=$data->validate([
+        //     'email'=>'required',
+        //     'password'='required'
+        // ]);
+        if(!Auth::attempt(['email' => $data['email'], 'password' =>bcrypt($data['password'])])){
+            dd('ok');
+        }
+    }
+
 }
