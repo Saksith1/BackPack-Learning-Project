@@ -33,7 +33,7 @@ class CreatePostsTable extends Migration
 
             $table->string('title');
             $table->text('body');
-            $table->text('image')->default('nothumbnail.jpg')->nullable();
+            $table->text('image')->nullable();
             $table->text('created_by')->nullable();
             $table->text('updated_by')->nullable();
             $table->timestamps();

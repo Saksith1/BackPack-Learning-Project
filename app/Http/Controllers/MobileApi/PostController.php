@@ -114,7 +114,7 @@ class PostController extends Controller
     public function store(Request $request)
     {
     
-        return $this->model->create($request->all());
+        return $this->model->store_post($request->all());
     }
 
     public function show($id)
@@ -124,7 +124,7 @@ class PostController extends Controller
 
     public function update(Request $request, $id)
     {
-        $this->model->update($request->all(), $id);
+        return $this->model->update_post($request->all(), $id);
 
     }
 

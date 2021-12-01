@@ -3,6 +3,10 @@ namespace App\Repositories;
 
 use App\Http\Requests\Api\PostRequest;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
+use Symfony\Component\Mime\Encoder\Base64Encoder;
 
 
 class Repository implements RepositoryInterface
@@ -92,5 +96,45 @@ class Repository implements RepositoryInterface
             return response()->json('password not matched',200);
         }
     }
+    //upload post with image
+    public function store_post(array $data){
+        $imageName = md5($data['image'].time()).'.jpg';
+        $image = str_replace('data:image/png;base64,', '',  $data['image']);
+        Storage::disk('stores')->put($imageName, base64_decode($image));
+        $data['image'] = $imageName;
 
+        $post = $this->model->create($data);
+        //
+        $post->categories()->attach($data['category_id']);
+        return $post;
+    }
+    //update post with image
+    public function update_post(array $data,$id){
+        //if select img
+        if(isset($data['image'])){
+            $record = $this->model->find($id);
+            //img name
+            $imageName=md5($data['image'].time()).'.jpg';
+            //replace img
+            $image=str_replace('data:image/png;base64,','',$data['image']);
+            //move to local storage with base 64
+            Storage::disk('stores')->put($imageName,base64_decode($image));
+            $data['image']=$imageName;
+            //delete old image
+            $image_path = public_path('images/'.$record->image);
+            if(\File::exists($image_path)){
+                \File::delete($image_path);
+            }
+            return $record->update($data);
+        }
+        //none select img
+        else{
+            //find old img
+            $image_old=$this->model::find($id);
+            //assign old img to image
+            $data['image']=$image_old['image'];
+            $record = $this->model->find($id);
+            return $record->update($data);
+        }
+    }
 }
