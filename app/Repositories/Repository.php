@@ -143,8 +143,12 @@ class Repository implements RepositoryInterface
         //     'email'=>'required',
         //     'password'='required'
         // ]);
-        if(!Auth::attempt(['email' => $data['email'], 'password' =>bcrypt($data['password'])])){
-            dd('ok');
+        if(!Auth::attempt(['email' => $data['email'], 'password' =>$data['password']])){
+            return response('Invalid email or password',400);
+        }
+        else{
+          $accessToken=Auth::user()->createToken('authToken')->accessToken;
+          return response(['user'=>Auth::user(),'access_token'=>$accessToken]);
         }
     }
 
