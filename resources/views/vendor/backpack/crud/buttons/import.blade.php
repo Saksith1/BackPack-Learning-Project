@@ -17,92 +17,57 @@
 <span>
 @endif
 @push('after_scripts')
-{{-- <script>
-    // var file_input=document.querySelector('#file');
-    // document.querySelector('#file').style.display="none";
+<script>
     $(document).ready(function(){
-        $('body').on('click','.btn-upload-file-excel',function(){
+        $('body').on('click','.btn-upload-file-excel',function(e){
+            e.preventDefault();
             var eThis = $(this);
             var frm = eThis.closest('form.form-upload');
             var formData = new FormData(frm[0]);
-            $.ajax({
-              url: '/trainer/import',
-              type: 'POST',
-              data: formData,
-              cache:false,
-              contentType: false,
-              processData: false,
-              success: function(result) {
-                  // Show an alert with the result
-                  console.log(result,route);
-                  new Noty({
-                      text: "Some Tx had been imported",
-                      type: "success"
+            if(frm.find('#file').val()==""){
+                new Noty({
+                      text: "Please Select File",
+                      type: "warning"
                   }).show();
-
-                  // Hide the modal, if any
-                  $('.modal').modal('hide');
-
-                  crud.table.ajax.reload();
-              },
-              error: function(result) {
+            }
+            else{
+                $.ajax({
+                type:'POST',
+                url: "/trainer/import",
+                data: formData,
+                cache:false,
+                contentType: false,
+                processData: false,
+                beforeSend: function() {
+                },
+                success: (data) => {
+                    $("#crudTable").DataTable().ajax.reload();
+                    $('.btn-default').click();
+                    new Noty({
+                      text: "Trainer had been imported",
+                      type: "success"
+                    }).show();
+                },
+                error: function(data){
                   // Show an alert with the result
+                  $('.btn-default').click();
                   new Noty({
                       text: "The new entry could not be created. Please try again.",
                       type: "warning"
                   }).show();
-              }
-          });
+                }
+            })
+            }
         });
     });
-    // file_input.addEventListener('change', function () {
-    //     alert('ok');
-    // });
-    // if (typeof importTransaction != 'function') {
-    //   $("[data-button-type=import]").unbind('click');
-
-    //   function importTransaction(button) {
-    //       // ask for confirmation before deleting an item
-    //       // e.preventDefault();
-    //       var button = $(button);
-    //     //   var route = button.attr('data-route');
-
-    //       $.ajax({
-    //           url: '/trainer/import',
-    //           type: 'GET',
-    //           success: function(result) {
-    //               // Show an alert with the result
-    //               console.log(result,route);
-    //               new Noty({
-    //                   text: "Some Tx had been imported",
-    //                   type: "success"
-    //               }).show();
-
-    //               // Hide the modal, if any
-    //               $('.modal').modal('hide');
-
-    //               crud.table.ajax.reload();
-    //           },
-    //           error: function(result) {
-    //               // Show an alert with the result
-    //               new Noty({
-    //                   text: "The new entry could not be created. Please try again.",
-    //                   type: "warning"
-    //               }).show();
-    //           }
-    //       });
-    //   }
-    // }
-</script> --}}
-
+</script>
 <!-- Modal -->
-
 <div id="myModal" class="modal fade" role="dialog">
   <div class="modal-dialog">
 
     <!-- Modal content-->
     <div class="modal-content">
-      <form class="form-upload" method="POST" action="/trainer/import" enctype="multipart/form-data">
+      <form class="form-upload" method="POST"  enctype="multipart/form-data">
           @csrf
             <div class="modal-header">
                 <h4 class="modal-title float-left">Upload File</h4>
