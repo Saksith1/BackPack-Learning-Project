@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\MobileApi;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\api\TrainerRequest;
 use Illuminate\Http\Request;
 use App\Models\Trainer;
 use App\Repositories\Repository;
@@ -26,7 +27,7 @@ class TrainerController extends Controller
         // ->orderBy('id', 'desc')->get();
     }
 
-    public function store(Request $request)
+    public function store(TrainerRequest $request)
     {
 
         return $this->model->create($request->all());
@@ -37,9 +38,12 @@ class TrainerController extends Controller
         return $this->model->show($id);
     }
 
-    public function update(Request $request, $id)
+    public function update(TrainerRequest $request, $id)
+    
     {
-        $this->model->update($request->all(), $id);
+        $trainer =  $this->model->update($request->all(), $id);
+        return response()->json($trainer);
+
 
     }
 

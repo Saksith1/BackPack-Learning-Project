@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\MobileApi;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\api\CategoryRequest;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Repositories\Repository;
@@ -29,7 +30,7 @@ class CategoryController extends Controller
         ->orderBy('id', 'desc')->get();
     }
 
-    public function store(Request $request)
+    public function store(CategoryRequest $request)
     {
     
         return $this->model->create($request->all());
@@ -40,9 +41,9 @@ class CategoryController extends Controller
         return $this->model->show($id);
     }
 
-    public function update(Request $request, $id)
+    public function update(CategoryRequest $request, $id)
     {
-        $this->model->update($request->all(), $id);
+        return $this->model->update($request->all(), $id);
 
     }
 

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\MobileApi;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\api\PostRequest;
 use Illuminate\Http\Request;
 use App\Repositories\Repository;
 use App\Models\Post;
@@ -111,20 +112,23 @@ class PostController extends Controller
         // ->orderBy('id', 'desc')->get();
     }
 
-    public function store(Request $request)
+    public function store(PostRequest $request)
     {
     
-        return $this->model->store_post($request->all());
+        $post=$this->model->store_post($request->all());
+        return response()->json($post);
     }
 
     public function show($id)
     {
-        return $this->model->show($id);
+       $post=$this->model->show($id);
+       return response()->json($post);
     }
 
-    public function update(Request $request, $id)
+    public function update(PostRequest $request, $id)
     {
-        return $this->model->update_post($request->all(), $id);
+       $post = $this->model->update_post($request->all(), $id);
+       return response()->json($post);
 
     }
 

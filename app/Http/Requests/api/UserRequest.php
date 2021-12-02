@@ -1,11 +1,12 @@
 <?php
 
 namespace App\Http\Requests\api;
+
+use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Http\Exceptions\HttpResponseException;
-use Illuminate\Foundation\Http\FormRequest;
 
-class PostRequest extends FormRequest
+class UserRequest extends FormRequest
 {
     protected function failedValidation(Validator $validator) {
         throw new HttpResponseException(
@@ -29,11 +30,8 @@ class PostRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required',
-            'body' => 'required',
-            'category_id' => 'required|exists:categories,id',
-            'trainer_id' => 'required|exists:trainers,id',
-            'user_id' => 'required|exists:users,id',
+            'email'=>'required|email',
+            'password'=>'required',
         ];
     }
 }

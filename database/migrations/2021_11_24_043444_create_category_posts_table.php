@@ -17,11 +17,13 @@ class CreateCategoryPostsTable extends Migration
             $table->id();
             $table->unsignedBigInteger('category_id');
             $table->foreign('category_id')
-            ->references('id')->on('categories');
+            ->references('id')->on('categories')
+            ->onDelete('cascade');
             $table->unsignedBigInteger('post_id');
             $table->foreign('post_id')
             ->references('id')
-            ->on('posts');
+            ->on('posts')
+            ->onDelete('cascade');
             $table->timestamps();
         });
     }
