@@ -7,6 +7,7 @@ use App\Http\Requests\api\TrainerRequest;
 use Illuminate\Http\Request;
 use App\Models\Trainer;
 use App\Repositories\Repository;
+use App\Http\Resources\TrainerResource;
 
 class TrainerController extends Controller
 {
@@ -21,10 +22,9 @@ class TrainerController extends Controller
 
     public function index()
     {
-        return $this->model
-        ->getModel()
-        ->all();
-        // ->orderBy('id', 'desc')->get();
+        $trainer = $this->model->getModel()->paginate(10);
+        return TrainerResource::collection($trainer);
+        
     }
 
     public function store(TrainerRequest $request)

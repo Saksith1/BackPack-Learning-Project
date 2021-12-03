@@ -29,12 +29,7 @@ class Repository implements RepositoryInterface
     public function create(array $data)
     {
         $record=$this->model->create($data);
-        $message = [
-            'message' => 'record created successfully',
-            'record' =>  $record,
-            'status' => 200,
-        ];
-        return $message;
+        return $record;
     }
 
     // update record in the database
@@ -131,11 +126,10 @@ class Repository implements RepositoryInterface
         ]);
         $accessToken=$post->createToken('token')->accessToken;
         $message = [
-            'message' => 'User has been created sucessfully',
+            'user'=>$post,
             'token' => $accessToken,
-            'status' => 200
         ];
-        return $message;
+        return $post;
     }
     //upload post with image
     public function store_post(array $data){

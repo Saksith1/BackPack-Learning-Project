@@ -7,6 +7,7 @@ use App\Http\Requests\api\CategoryRequest;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Repositories\Repository;
+use App\Http\Resources\CategoryResource;
 
 class CategoryController extends Controller
 {
@@ -25,9 +26,8 @@ class CategoryController extends Controller
 
     public function index()
     {
-        return $this->model
-        ->getModel()
-        ->orderBy('id', 'desc')->get();
+        $category = $this->model->getModel()->paginate(10);
+        return CategoryResource::collection($category);
     }
 
     public function store(CategoryRequest $request)

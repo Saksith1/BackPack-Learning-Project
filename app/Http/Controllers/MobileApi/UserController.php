@@ -7,6 +7,7 @@ use App\Http\Requests\api\UserRequest;
 use Illuminate\Http\Request;
 use App\Models\User;
 use App\Repositories\Repository;
+use App\Http\Resources\UserResource;
 
 
 class UserController extends Controller
@@ -26,10 +27,9 @@ class UserController extends Controller
 
     public function index()
     {
-        return $this->model
-        ->getModel()
-        ->all();
-        // ->orderBy('id', 'desc')->get();
+        $user=$this->model->getModel()->paginate(10);
+        return UserResource::collection($user);
+
     }
 
     public function store(UserRequest $request)
@@ -41,7 +41,7 @@ class UserController extends Controller
             'email'=>'required|email|unique:users',
         ]);
         $user = $this->model->create_user($request->all());
-        return response()->json($user);
+        return new UserResource($user);
     }
     
     public function register(Request $request){

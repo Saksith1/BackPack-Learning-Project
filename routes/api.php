@@ -21,10 +21,15 @@ use App\Http\Controllers\MobileApi\UserController;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-Route::resource('posts', PostController::class);
-Route::resource('categoires', CategoryController::class);
-Route::resource('trainers', TrainerController::class);
-Route::resource('users',UserController::class);
+Route::group([
+    'middleware' => 'auth:api',
+    'prefix' => 'v1'
+],function(){
+    Route::resource('posts', PostController::class);
+    Route::resource('users',UserController::class);
+    Route::resource('categoires', CategoryController::class);
+    Route::resource('trainers', TrainerController::class);
+});
 Route::post('/register',[UserController::class,'register']);
 Route::post('/login',[UserController::class,'loginu']);
 
