@@ -23,14 +23,25 @@
             e.preventDefault();
             var eThis = $(this);
             var frm = eThis.closest('form.form-upload');
+            var file=frm.find('#file');
             var formData = new FormData(frm[0]);
-            if(frm.find('#file').val()==""){
+            //check file extension
+            var extension = file.val().replace(/^.*\./,"");
+            if(file.val()==""){
                 new Noty({
                       text: "Please Select File",
                       type: "warning"
                   }).show();
             }
+            else if(extension != 'xlsx' && extension != 'csv'){
+                new Noty({
+                      text: "File not supported check your file extension",
+                      type: "warning"
+                  }).show();
+            }
             else{
+                // var extension=getFileExtension(file.val());
+                // alert(extension);
                 $.ajax({
                 type:'POST',
                 url: "/trainer/import",

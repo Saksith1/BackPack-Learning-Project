@@ -22,8 +22,8 @@ function () {
     // if not otherwise configured, setup the auth routes
     if (config('backpack.base.setup_auth_routes')) {
         // Authentication Routes...
-        Route::get('login', 'Auth\LoginController@showLoginForm')->name('backpack.auth.login');
-        Route::post('login', 'Auth\LoginController@login');
+        // Route::get('login', 'Auth\LoginController@showLoginForm')->name('backpack.auth.login');
+        // Route::post('login', 'Auth\LoginController@login');
         Route::get('logout', 'Auth\LoginController@logout')->name('backpack.auth.logout');
         Route::post('logout', 'Auth\LoginController@logout');
 
@@ -65,6 +65,8 @@ Route::group(
             // Registration Routes...
             Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('backpack.auth.register');
             Route::post('register', 'Auth\RegisterController@register');
+            Route::get('login', 'Auth\LoginController@showLoginForm')->name('backpack.auth.login');
+            Route::post('login', 'Auth\LoginController@login');
     
         }
     

@@ -1,4 +1,4 @@
-@extends(backpack_view('layouts.plain'))
+@extends('base.layouts.plain')
 
 @section('content')
     <div class="row justify-content-center">

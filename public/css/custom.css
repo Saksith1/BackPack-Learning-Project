@@ -1,0 +1,20 @@
+.bg-image{
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size:cover;
+
+}
+.bg-image a , .bg-image h3{
+    color: white;
+}
+.bg-image .logo{
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 1px solid #eee;
+    overflow: hidden;
+    margin: 10px auto;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size:cover;
+}

@@ -21,7 +21,8 @@ class PostResource extends JsonResource
             'user_id'=>$this->user_id,
             'category'=>$this->categories,
             'body'=>$this->body,
-            'image'=>$this->image,
+            'image'=>'http://127.0.0.1:8000/images/'.$this->image,
+            'createdAt' => $this->created_at->format('Y-m-d H:i:s')
         ];
     }
 }

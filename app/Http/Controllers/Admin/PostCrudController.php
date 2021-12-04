@@ -128,12 +128,12 @@ class PostCrudController extends CrudController
             'label'=>'Body',
             'name'=>'body',
         ]);
-        CRUD::addColumn([
-            'name' => 'image',
-            'type' => 'customimage',
-            'prefix'    => 'images/',
-            'label' => 'Thumbnail',
-        ]);
+        // CRUD::addColumn([
+        //     'name' => 'image',
+        //     'type' => 'customimage',
+        //     'prefix'    => 'images/',
+        //     'label' => 'Thumbnail',
+        // ]);
         CRUD::addColumn([
             'label'=>'Created By',
             'name'=>'created_by',
@@ -191,7 +191,7 @@ class PostCrudController extends CrudController
             // // 'attribute'   => "name", // foreign key attribute that is shown to user
             // 'data_source' => url("api/trainer"), // url to controller search function (with /{id} should return model)
             'placeholder'             => "Select a Trainer", // placeholder for the select
-            'minimum_input_length' => 1,
+            'minimum_input_length' => 0,
             'ajax' => true,
             'inline_create' => [ // specify the entity in singular
                 'entity' => 'trainer', // the entity in singular
@@ -232,30 +232,30 @@ class PostCrudController extends CrudController
         // ]);
        
         //ajax
-        // CRUD::addField([
-        //     'label'       => "Category", // Table column heading
-        //     'type'        => "select2_from_ajax_multiple",
-        //     'name'        => 'categories', // a unique identifier (usually the method that defines the relationship in your Model) 
-        //     'entity'      => 'categories', // the method that defines the relationship in your Model
-        //     'attribute'   => "title", // foreign key attribute that is shown to user
-        //     'data_source' => url("/api/category"), // url to controller search function (with /{id} should return model)
-        //     'pivot'       => true, // on create&update, do you need to add/delete pivot table entries?
-
-        //     // OPTIONAL
-        //     'delay' => 500, // the minimum amount of time between ajax requests when searching in the field
-        //     'model'                => "App\Models\Category", // foreign key model
-        //     'placeholder'          => "Select a Category", // placeholder for the select
-        //     'minimum_input_length' => 1, // minimum characters to type before querying results
-        //     // 'include_all_form_fields'  => false, // optional - only send the current field through AJAX (for a smaller payload if you're not using multiple chained select2s)
-            
-        // ]);
         CRUD::addField([
-            'label' => "Category",
-            'name' => 'categories',
-            'type' => 'select2_multiple',
-            'entity' => 'categories',
-            'attribute' => 'title',
+            'label'       => "Category", // Table column heading
+            'type'        => "select2_from_ajax_multiple",
+            'name'        => 'categories', // a unique identifier (usually the method that defines the relationship in your Model) 
+            'entity'      => 'categories', // the method that defines the relationship in your Model
+            'attribute'   => "title", // foreign key attribute that is shown to user
+            'data_source' => url("/api/category"), // url to controller search function (with /{id} should return model)
+            'pivot'       => true, // on create&update, do you need to add/delete pivot table entries?
+
+            // OPTIONAL
+            'delay' => 500, // the minimum amount of time between ajax requests when searching in the field
+            'model'                => "App\Models\Category", // foreign key model
+            'placeholder'          => "Select a Category", // placeholder for the select
+            'minimum_input_length' => 0, // minimum characters to type before querying results
+            // 'include_all_form_fields'  => false, // optional - only send the current field through AJAX (for a smaller payload if you're not using multiple chained select2s)
+            
         ]);
+        // CRUD::addField([
+        //     'label' => "Category",
+        //     'name' => 'categories',
+        //     'type' => 'select2_multiple',
+        //     'entity' => 'categories',
+        //     'attribute' => 'title',
+        // ]);
         CRUD::field('body')->type('ckeditor');
         
         CRUD::addField([
