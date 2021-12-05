@@ -15,7 +15,7 @@ class WidgetController extends Controller
         $post=Post::count();
         $category=Category::count();
         $trainer=Category::count();
-        return view('base.dashboard')
+        return view('vendor.backpack.base.dashboard')
         ->with('user',$user)
         ->with('post',$post)
         ->with('category',$category)

@@ -94,7 +94,7 @@ class RegisterController extends Controller
 
         $this->data['title'] = trans('backpack::base.register'); // set the page title
 
-        return view('base.auth.register', $this->data);
+        return view('vendor.backpack.base.auth.register', $this->data);
     }
 
     /**

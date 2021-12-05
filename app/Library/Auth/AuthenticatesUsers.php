@@ -21,7 +21,7 @@ trait AuthenticatesUsers
         $this->data['title'] = trans('backpack::base.login'); // set the page title
         $this->data['username'] = $this->username();
 
-        return view('base.auth.login', $this->data);
+        return view('vendor.backpack.base.auth.login', $this->data);
     }
 
     /**
