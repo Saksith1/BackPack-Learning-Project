@@ -11,6 +11,7 @@
 */
 use App\Http\Controllers\WidgetController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\MyAccountController;
 
 Route::group(
 [
@@ -48,8 +49,8 @@ function () {
 
     // if not otherwise configured, setup the "my account" routes
     if (config('backpack.base.setup_my_account_routes')) {
-        Route::get('edit-account-info', 'MyAccountController@getAccountInfoForm')->name('backpack.account.info');
-        Route::post('edit-account-info', 'MyAccountController@postAccountInfoForm')->name('backpack.account.info.store');
+        // Route::get('edit-account-info', 'MyAccountController@getAccountInfoForm')->name('backpack.account.info');
+        // Route::post('edit-account-info', 'MyAccountController@postAccountInfoForm')->name('backpack.account.info.store');
         Route::post('change-password', 'MyAccountController@postChangePasswordForm')->name('backpack.account.password');
     }
 });
@@ -67,7 +68,8 @@ Route::group(
             Route::post('register', 'Auth\RegisterController@register');
             Route::get('login', 'Auth\LoginController@showLoginForm')->name('backpack.auth.login');
             Route::post('login', 'Auth\LoginController@login');
-    
+            Route::get('edit-account-info', 'MyAccountController@getAccountInfoForm')->name('backpack.account.info');
+            Route::post('edit-account-info', 'MyAccountController@postAccountInfoForm')->name('backpack.account.info.store');
         }
     
     });

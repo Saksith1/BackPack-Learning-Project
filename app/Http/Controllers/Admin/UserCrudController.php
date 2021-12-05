@@ -39,6 +39,11 @@ class UserCrudController extends CrudController
      */
     protected function setupListOperation()
     {
+        CRUD::addColumn([
+            'name'=>'image',
+            'type'=>'image',
+            'prefix'=>'images/profile/'
+        ]);
         CRUD::column('name');
         CRUD::column('email');
         CRUD::column('phone');

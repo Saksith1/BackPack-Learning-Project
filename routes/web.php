@@ -5,6 +5,7 @@ use App\Http\Controllers\CateogryController;
 
 use App\Http\Controllers\TrainerController;
 use App\Http\Controllers\MobileApi\UserController;
+use App\Http\Controllers\MyAccountController;
 
 /*
 |--------------------------------------------------------------------------
@@ -24,5 +25,6 @@ Route::get('/api/category',[CateogryController::class,'index']);
 Route::get('/api/category/{id}',[CateogryController::class,'show']);
 Route::get('/api/trainer',[TrainerController::class,'getTrainer']);
 Route::post('trainer/import', [TrainerController::class,'import']);
+Route::post('admin/edit-account-info/change-proflile', [MyAccountController::class,'changeProfile']);
 
 
