@@ -107,6 +107,12 @@ class PostCrudController extends CrudController
         
         //list view
         CRUD::addColumn([
+            'label'=>'Image',
+            'name'=>'image',
+            'type' => 'image',
+            'prefix' => 'images/'
+        ]);
+        CRUD::addColumn([
             'label'=>'ID',
             'name'=>'id',
         ]);

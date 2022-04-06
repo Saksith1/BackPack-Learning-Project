@@ -244,4 +244,8 @@ class Repository implements RepositoryInterface
         }
     }
 
+    //get posts by cateogry
+    // public function getPostsByCateogry($category){
+    //     $post=$this->model->where('category_id',$category)
+    // }
 }

@@ -4,10 +4,14 @@ namespace App\Http\Controllers\MobileApi;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\api\PostRequest;
+use App\Models\CategoryPost;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Repositories\Repository;
 use App\Models\Post;
+
 use App\Http\Resources\PostResource;
+
 
 class PostController extends Controller
 {
@@ -56,4 +60,10 @@ class PostController extends Controller
     {
         return $this->model->delete($id);
     }
+    public function postsByCagegory($id){
+        
+        $posts = Category::find($id)->posts;
+        return PostResource::collection($posts);
+    }
+
 }

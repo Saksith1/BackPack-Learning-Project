@@ -40,7 +40,34 @@ class CategoryCrudController extends CrudController
      */
     protected function setupListOperation()
     {
-        CRUD::column('title');
+        CRUD::addcolumn([
+            'label' => 'Title',
+            'name'=>'title',
+            'type'=>'text'
+        ]); 
+        
+        CRUD::addcolumn([
+            'label' => 'URL',
+            'name'=>'url',
+            'type'=>'text'
+        ]); 
+
+        CRUD::addcolumn([
+            'label' => 'Sort',
+            'name'=>'sort',
+            'type'=>'text'
+        ]); 
+        // CRUD::column([
+        //     'label' => 'URL',
+        //     'name'=>'url',
+        //     'type'=>'text'
+        // ]); 
+
+        // CRUD::column([
+        //     'label' => 'Sort',
+        //     'name'=>'sort',
+        //     'type'=>'text'
+        // ]); 
 
         /**
          * Columns can be defined using the fluent syntax or array syntax:
@@ -59,7 +86,23 @@ class CategoryCrudController extends CrudController
     {
         CRUD::setValidation(CategoryRequest::class);
 
-        CRUD::field('title');
+        CRUD::addfield([
+            'label' => 'Title',
+            'name'=>'title',
+            'type'=>'text'
+        ]); 
+        
+        CRUD::addfield([
+            'label' => 'URL',
+            'name'=>'url',
+            'type'=>'text'
+        ]); 
+
+        CRUD::addfield([
+            'label' => 'Sort',
+            'name'=>'sort',
+            'type'=>'text'
+        ]); 
 
         /**
          * Fields can be defined using the fluent syntax or array syntax:

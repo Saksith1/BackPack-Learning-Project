@@ -22,11 +22,12 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 Route::group([
-    'middleware' => 'auth:api',
+    // 'middleware' => 'auth:api',
     'prefix' => 'v1'
 ],function(){
     Route::resource('posts', PostController::class);
-    Route::resource('users',UserController::class);
+    Route::get('topic/{id}',[PostController::class, 'postsByCagegory']);
+    Route::resource('users', UserController::class);
     Route::resource('categoires', CategoryController::class);
     Route::resource('trainers', TrainerController::class);
 });
