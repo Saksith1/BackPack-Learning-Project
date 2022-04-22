@@ -281,7 +281,7 @@ class PostCrudController extends CrudController
             'name' => "image",
             'type' => 'image',
             'default'=>'nothumbnail.jpg',
-            'crop' => true, // set to true to allow cropping, false to disable
+            'crop' => false, // set to true to allow cropping, false to disable
             'aspect_ratio' => 1, // omit or set to 0 to allow any aspect ratio
             // 'disk'      => 's3_bucket', // in case you need to show images from a different disk
             'prefix'    => 'images/' 

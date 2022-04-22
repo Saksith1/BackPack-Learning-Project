@@ -62,7 +62,7 @@ class PostController extends Controller
     }
     public function postsByCagegory($id){
         
-        $posts = Category::find($id)->posts;
+        $posts = Category::find($id)->posts()->paginate(5);
         return PostResource::collection($posts);
     }
 
