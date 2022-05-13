@@ -11,6 +11,7 @@ use App\Repositories\Repository;
 use App\Models\Post;
 
 use App\Http\Resources\PostResource;
+use PhpParser\Node\Expr\FuncCall;
 
 
 class PostController extends Controller
@@ -62,8 +63,13 @@ class PostController extends Controller
     }
     public function postsByCagegory($id){
         
-        $posts = Category::find($id)->posts()->paginate(5);
+        $posts = Category::find($id)->posts()->paginate(6);
         return PostResource::collection($posts);
     }
+    public function postsTopHomePage() {
+        $posts = Post::where('location',0)->get();
+        return PostResource::collection($posts);
+    }
+
 
 }

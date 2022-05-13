@@ -15,7 +15,7 @@ class CategoryPostFactory extends Factory
     {
         return [
             'category_id' => rand(1, 4),
-            'post_id' => rand(27, 127),
+            'post_id' => rand(1, 200),
         ];
     }
 }

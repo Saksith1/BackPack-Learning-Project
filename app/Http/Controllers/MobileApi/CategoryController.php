@@ -51,4 +51,8 @@ class CategoryController extends Controller
     {
         return $this->model->delete($id);
     }
+    public function postsCategoryListHome(){
+        $categories = Category::all();
+        return CategoryResource::collection($categories);
+    }
 }

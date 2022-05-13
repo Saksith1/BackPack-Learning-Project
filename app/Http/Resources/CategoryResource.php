@@ -3,6 +3,7 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
+use App\Http\Resources\PostResource;
 
 class CategoryResource extends JsonResource
 {
@@ -20,7 +21,8 @@ class CategoryResource extends JsonResource
             'url' => $this->url,
             'sort' => $this->sort,
             'created_at' => $this->created_at,
-            'updated_at' => $this->updated_at
+            'updated_at' => $this->updated_at,
+            'posts' => PostResource::collection($this->posts)
         ];
     }
 }

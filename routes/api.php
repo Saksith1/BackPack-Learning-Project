@@ -27,6 +27,8 @@ Route::group([
 ],function(){
     Route::resource('posts', PostController::class);
     Route::get('topic/{id}',[PostController::class, 'postsByCagegory']);
+    Route::get('posts-top-home',[PostController::class, 'postsTopHomePage']);
+    Route::get('posts-cateogry-list-home',[CategoryController::class, 'postsCategoryListHome']);
     Route::resource('users', UserController::class);
     Route::resource('categoires', CategoryController::class);
     Route::resource('trainers', TrainerController::class);
